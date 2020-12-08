@@ -4,6 +4,7 @@
     Author     : Comp
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,9 +13,12 @@
         <title>Список книг</title>
     </head>
     <body>
-        <h1>Список книг библиотеки</h1>
-        <c:forEach var="book" items="${listBooks}" varStatus="status">
-            <li>${status.index + 1}. "${book.name}". ${book.author}. ${book.publishedYear}</li>
-        </c:foreach>
+        <h1>Книги библиотеки:</h1>
+        <select name="bookId" multiple="true">
+            <option value="">Список книг</option>
+            <c:forEach var="book" items="${listBooks}">
+                <option value="${book.id}">"${book.name}". ${book.author}. ${book.publishedYear} </option>
+            </c:forEach>
+        </select>
     </body>
 </html>
