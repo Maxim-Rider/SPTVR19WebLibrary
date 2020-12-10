@@ -30,8 +30,7 @@ public class HistoryFacade extends AbstractFacade<History> {
         super(History.class);
     }
 
-
-public List<History> findHistoriesWithReadBook() {
+    public List<History> findHistoriesWithReadBook() {
         try {
             return em.createQuery("SELECT h FROM History h WHERE h.returnDate = NULL")
                     .getResultList();
@@ -39,4 +38,5 @@ public List<History> findHistoriesWithReadBook() {
             return null;
         }
     }
+    
 }

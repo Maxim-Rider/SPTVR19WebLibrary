@@ -3,8 +3,7 @@
     Created on : 08.12.2020, 12:24:02
     Author     : Comp
 --%>
-
-%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
