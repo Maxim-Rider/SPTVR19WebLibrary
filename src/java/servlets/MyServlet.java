@@ -29,6 +29,8 @@ import session.ReaderFacade;
     "/listReaders",
     "/takeOnBookForm",
     "/takeOnBook",
+    "/returnBookForm",
+    "/returnBook",
 })
 public class MyServlet extends HttpServlet {
     @EJB 
@@ -125,6 +127,24 @@ public class MyServlet extends HttpServlet {
                 request.setAttribute("info","Добавлена выдана");
                 request.getRequestDispatcher("/index.jsp").forward(request, response);
                 break;
+
+            case "/returnBookForm":
+                List<History> listHistoriesWithReadBook = historyFacade.findHistoriesWithReadBook();
+                request.setAttribute("listHistoriesWithReadBook", listHistoriesWithReadBook);
+                request.getRequestDispatcher("/WEB-INF/returnBookForm.jsp").forward(request, response);
+                break;
+            case "/returnBook":
+                String historyId = request.getParameter("historyId");
+                if("".equals(historyId) || historyId == null || historyId == "-1"){
+                    request.setAttribute("info", "Выберите книгу");
+                    request.getRequestDispatcher("/returnBookForm").forward(request, response);
+                    break;
+                }
+                history = historyFacade.find(Long.parseLong(historyId));
+                history.setReturnDate(new GregorianCalendar().getTime());
+                historyFacade.edit(history);
+                request.setAttribute("info","Добавлена возвращена");
+                request.getRequestDispatcher("/index.jsp").forward(request, response);
         }
     }
 
